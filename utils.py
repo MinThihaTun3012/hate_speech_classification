@@ -5,14 +5,13 @@ import simmpst
 from simmpst.tokenization import MultilingualPartialSyllableTokenization
 import random
 
-def prepare_text(text,tokenizer):
+def prepare_text(text: str,tokenizer: simmpst.tokenization.MultilingualPartialSyllableTokenization)  -> np.ndarray:
     """
     Prepares the text for model input by tokenizing and padding it.
     
     Parameters:
     - text (str): The input text to be prepared.
     - tokenizer: The tokenizer object to tokenize the text.
-    - maxlen (int): The maximum length to pad/truncate the sequences.
     
     Returns:
     - np.array: The padded tokenized text.
@@ -34,9 +33,9 @@ def prepare_text(text,tokenizer):
         return pad_sequences(tokenized_text, maxlen=300, padding='post', truncating='post', dtype='int32')
     
     except Exception as e:
-        return f"Error : {str(e)}"
+        raise f"Error : {str(e)}"
 
-def get_prediction(processed_text, threshold, model):
+def get_prediction(processed_text: str, threshold: float, model: keras.src.models.sequential.Sequential) -> str:
     """
     Predicts the class of the input text using the trained model.
     
@@ -62,7 +61,7 @@ def get_prediction(processed_text, threshold, model):
     except Exception as e:
         return f"Error: {str(e)}"
     
-def get_random_text(text):
+def get_random_text(text: str) -> str:
     """
     give an test sentence to test the model 
     take current string not to give the same one
