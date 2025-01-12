@@ -1,4 +1,5 @@
-from keras.preprocessing.sequence import pad_sequences
+import tensorflow as tf
+from tf.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import re
 import simmpst
@@ -35,7 +36,7 @@ def prepare_text(text: str,tokenizer: simmpst.tokenization.MultilingualPartialSy
     except Exception as e:
         raise f"Error : {str(e)}"
 
-def get_prediction(processed_text: str, threshold: float, model: keras.src.models.sequential.Sequential) -> str:
+def get_prediction(processed_text: str, threshold: float, model: tf.keras.src.models.sequential.Sequential) -> str:
     """
     Predicts the class of the input text using the trained model.
     
