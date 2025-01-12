@@ -36,7 +36,7 @@ def prepare_text(text: str,tokenizer: simmpst.tokenization.MultilingualPartialSy
     except Exception as e:
         raise f"Error : {str(e)}"
 
-def get_prediction(processed_text: str, threshold: float, model: tf.keras.src.models.sequential.Sequential) -> str:
+def get_prediction(processed_text: str, threshold: float, model: tf.keras.models.Sequential) -> str:
     """
     Predicts the class of the input text using the trained model.
     
