@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tf.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 import re
 import simmpst
