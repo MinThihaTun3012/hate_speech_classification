@@ -74,10 +74,36 @@ The model used for classifying hate speech is a deep learning-based text classif
 - [simbolo-ai/burmese-hate-speech-small](https://huggingface.co/datasets/simbolo-ai/burmese-hate-speech-small)
 - [train_small.txt](https://github.com/simbolo-ai/multilingual-partial-syllable-tokenizer/blob/main/train_small.txt)
 
-## Preprocessing Steps
+### Preprocessing Steps
 
 - **Tokenization**: Text input is tokenized into subword units using [Simbolo Tokenizer: multilingual-partial-syllable-tokenizer](https://github.com/simbolo-ai/multilingual-partial-syllable-tokenizer).
 - **Encoding** : Encode Tokens to Numerical values
+
+### Model Results
+
+The model was trained on a dataset of 9,114 sentences, consisting of 4,557 hate speech and 4,557 non-hate speech sentences. The data was split as follows:
+
+- 70% for training
+- 15% for validation
+- 15% for testing
+
+During training, the model achieved the following results:
+
+- Accuracy: 0.9961
+- Loss: 0.0135
+- Validation Accuracy: 0.9737
+- Validation Loss: 0.1674
+
+On the testing data, the model achieved the following performance metrics:
+
+- Accuracy: 0.94
+- Recall: 0.975
+- Precision: 0.973
+
+**Note**: Due to re-running the Kaggle notebook, there may be slight variations in the metrics.
+
+For further details on the training and evaluation process, you can check the [Kaggle Notebook](https://www.kaggle.com/code/minthihatun/burmese-hate-speech-detection).
+
 
 ## Limitations
 
