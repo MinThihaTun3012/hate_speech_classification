@@ -60,7 +60,7 @@ with col1:
 with col2:
     if st.button("Get test data"):
         st.session_state.user_input = get_random_text()
-        st.info("Test data loaded into text area.")
+        st.toast("Test data loaded into text area.")
 
 #<-------------- app end ------------------------>
 

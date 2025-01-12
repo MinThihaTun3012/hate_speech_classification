@@ -21,13 +21,12 @@ def prepare_text(text,tokenizer):
     try:
         #check burmese or not
         if re.search(r"[^က-႟\s]", text):
-            return "Please only put Burmese text"
+            raise ValueError("Please only put Burmese text")
     
         # Tokenize the text
         tokenized_text = np.array(tokenizer.encode(tokenizer.tokenize_text(text)))
-        # print("token len : ", len(tokenized_text))
         
-        # # wrap it in a list
+        # wrap it in a list
         if not isinstance(tokenized_text, list):
             tokenized_text = [tokenized_text]  # Make sure it's a list
         
@@ -59,21 +58,27 @@ def get_prediction(processed_text, threshold, model):
         predicted_class = int(result > threshold)
 
         return class_labels[predicted_class]
+    
     except Exception as e:
         return f"Error: {str(e)}"
     
-def get_random_text():
+def get_random_text(text):
     """
-    give an sentence to test the model
+    give an test sentence to test the model 
+    take current string not to give the same one
+    
+    input: 
+    - str : an current sentence
     
     Retruns:
     - str: an sentence to test
     """
-    
-    text_list = ["ဂရိဒဏ္ဍာရီ သည် ရှေးခေတ်ဂရိလူမျိုးများ မူလအနေဖြင့် ပြောဆိုခဲ့ကြသော ဒဏ္ဍာရီ အစုအဝေးတစ်ခုဖြစ်၍ ရှေးဂရိရိုးရာပုံပြင်ဇာတ်လမ်း အမျိုးအစားတစ်ခုလည်းဖြစ်သည်။ ဤဇာတ်လမ်းပုံပြင်များတွင် ကမ္ဘာလောက၏ မူလအစနှင့် သဘောသဘာဝ၊ နတ်ဘုရားများ၊ သူရဲကောင်းများ၊ ဒဏ္ဍာရီလာသတ္တဝါများ စသည်တို့၏ ဘဝနှင့် ဆောင်ရွက်မှုများ၊ ရှေးခေတ်ဂရိလူမျိုးတို့၏ ကိုယ်ပိုင်ယုံကြည်ကိုးကွယ်မှုနှင့် ရိုးရာဓလေ့ကျင့်ထုံးတို့၏ မူလဇာစ်မြစ်များနှင့် အရေးပါမှုတို့ ပါဝင်ကြသည်။",
+    now = set(text)
+    text_list = {"ဂရိဒဏ္ဍာရီ သည် ရှေးခေတ်ဂရိလူမျိုးများ မူလအနေဖြင့် ပြောဆိုခဲ့ကြသော ဒဏ္ဍာရီ အစုအဝေးတစ်ခုဖြစ်၍ ရှေးဂရိရိုးရာပုံပြင်ဇာတ်လမ်း အမျိုးအစားတစ်ခုလည်းဖြစ်သည်။ ဤဇာတ်လမ်းပုံပြင်များတွင် ကမ္ဘာလောက၏ မူလအစနှင့် သဘောသဘာဝ၊ နတ်ဘုရားများ၊ သူရဲကောင်းများ၊ ဒဏ္ဍာရီလာသတ္တဝါများ စသည်တို့၏ ဘဝနှင့် ဆောင်ရွက်မှုများ၊ ရှေးခေတ်ဂရိလူမျိုးတို့၏ ကိုယ်ပိုင်ယုံကြည်ကိုးကွယ်မှုနှင့် ရိုးရာဓလေ့ကျင့်ထုံးတို့၏ မူလဇာစ်မြစ်များနှင့် အရေးပါမှုတို့ ပါဝင်ကြသည်။",
                  "သင်ခန်းစာလေးတွေ ကြည့်ဖြစ်ကြရဲ့လား ခင်ဗျ",
                  "ဒီခွေးသတေါင်းစါးကတမျိုးနင်တို့ခွေးမျိုးခွေးအုပ်စုရှိရာသွားအူနေစမ်းပါ",
-                 "အမှန်တွေပြောရင် မခံနိူင်ဘူးလား ဖင်ခံလိုက်"]
+                 "အမှန်တွေပြောရင် မခံနိူင်ဘူးလား ဖင်ခံလိုက်"}
+    
 
-    return random.choice(text_list)
+    return random.choice(text_list-now)
         
