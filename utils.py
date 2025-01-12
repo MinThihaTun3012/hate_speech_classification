@@ -34,7 +34,7 @@ def prepare_text(text: str,tokenizer: simmpst.tokenization.MultilingualPartialSy
         return pad_sequences(tokenized_text, maxlen=300, padding='post', truncating='post', dtype='int32')
     
     except Exception as e:
-        raise f"Error : {str(e)}"
+        raise ValueError(f"Error: {str(e)}")
 
 def get_prediction(processed_text: str, threshold: float, model: tf.keras.models.Sequential) -> str:
     """
