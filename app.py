@@ -8,7 +8,7 @@ from utils import prepare_text, get_prediction, get_random_text
 # Load the model and tokenizer
 try:
     model = tf.keras.models.load_model('model_best_weights.keras')
-    with open("partial_syllable.model.pkl", "rb") as f:
+    with open("tokenizer.pkl", "rb") as f:
         tokenizer = pk.load(f)
 except Exception as e:
     st.error(f"Error loading model or tokenizer: {e}")
